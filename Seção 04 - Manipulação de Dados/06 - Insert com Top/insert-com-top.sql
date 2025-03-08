@@ -1,0 +1,31 @@
+
+ALTER TABLE TB_CLIENTE
+	ADD Estado CHAR(2) NULL;
+
+UPDATE TB_CLIENTE SET Estado = 'SP' WHERE Id IN (1, 2, 6);
+
+UPDATE TB_CLIENTE SET Estado = 'RJ' WHERE Id IN (7, 9, 10);
+
+INSERT INTO TB_CLIENTE
+	VALUES ('Miriam Souza', '12312312332', '1986-06-13 12:32:12', 'miriam@email.com', 'SP'),
+		   ('Jair Batista', '00000000000', '1990-04-13 12:32:12', 'jair@email.com', 'SP'),
+		   ('Paula Silva', '55556666789', '1980-12-03 16:22:12', 'paula@gmail.com', 'RJ'),
+		   ('João Abreu', '11122233345', '1987-11-23 21:55:55', 'joao@email.com', 'RJ')
+
+CREATE TABLE TB_CLIENTE_SP(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Nome VARCHAR(70),
+	CPF VARCHAR(11),
+	DataNascimento DATETIME2,
+	Email VARCHAR(70),
+	Estado CHAR(2),
+	
+	CONSTRAINT PK_CLIENTE_SP PRIMARY KEY(Id)
+);
+
+SELECT * FROM TB_CLIENTE;
+SELECT * FROM TB_CLIENTE_SP;
+
+INSERT TOP(3) INTO TB_CLIENTE_SP
+	SELECT Nome, CPF, DataNascimento, Email, Estado FROM TB_CLIENTE
+		WHERE Estado = 'SP'
