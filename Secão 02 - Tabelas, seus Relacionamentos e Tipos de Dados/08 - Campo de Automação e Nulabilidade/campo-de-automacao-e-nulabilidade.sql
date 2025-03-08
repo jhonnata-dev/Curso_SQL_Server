@@ -1,0 +1,7 @@
+CREATE TABLE TB_PRODUTO (
+
+	ProdutoId  INT IDENTITY(1, 1),
+	ProdutoId2 INT NOT NULL,
+	ProdutoId3 INT NULL
+
+);	
